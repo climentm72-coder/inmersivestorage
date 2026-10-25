@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "immersivestorage",
+  "version": "1.0.0",
+  "name": "Immersive Storage",
+  "description": "Mod de almacenamiento inmersivo para Fabric 1.20.1",
+  "authors": [
+    "Climentm72"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/immersivestorage/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.climentm72.immersivestorage.ImmersiveStorage"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=0.14.22",
+    "minecraft": "~1.20.1",
+    "java": ">=17",
+    "fabric-api": "*"
+  }
+}
