@@ -3,24 +3,35 @@ name: Build Mod
 on:
   push:
     branches: [ "main" ]
+  pull_request:
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
           distribution: 'temurin'
-      - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
+          java-version: '17'
+          cache: gradle
+
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
       - name: Build with Gradle
-        run: ./gradlew build
+        working-directory: src/main/resources
+        run: gradle build --no-daemon
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: Mod-Fabric-1.20.1
-          path: build/libs/*.jar
+          path: src/main/resources/build/libs/*.jar
